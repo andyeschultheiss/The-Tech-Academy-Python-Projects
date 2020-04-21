@@ -55,16 +55,21 @@ def browse_dir(self):
 
 # execute button function
 def execute_txtfile_move(self):
-    # clear listbox and status label
-    self.lstList1.delete(0,END)
-    self.statusLabel.config(text='')
-    # scan and move, returning a count of files moved
-    count = txt_scan(self, self.sourceDir, self.destDir)
-    # display status text
-    if (count > 0):
-        self.statusLabel.config(text='{} files moved successfully! \nList recorded in ''txtList.db'''.format(count))
-    elif (count == 0):
-        self.statusLabel.config(text='No .txt files found in source directory. \nNo files were moved.')
+    if (self.sourceDir == self.destDir):
+        # Message for matching source and destination
+        self.statusLabel.config(text='Identical source and destination directories.\nPlease select a different directory and try again.')
+
+    else:
+        # clear listbox and status label
+        self.lstList1.delete(0,END)
+        self.statusLabel.config(text='')
+        # scan and move, returning a count of files moved
+        count = txt_scan(self, self.sourceDir, self.destDir)
+        # display status text
+        if (count > 0):
+            self.statusLabel.config(text='{} files moved successfully! \nList recorded in ''txtList.db'''.format(count))
+        elif (count == 0):
+            self.statusLabel.config(text='No .txt files found in source directory. \nNo files were moved.')
     
 
 # text file scan and move function with database recording
