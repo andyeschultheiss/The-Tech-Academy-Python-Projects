@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/home.css') }}">
+    <title>Presidential Polling Dashboard 2020</title>
+</head>
+
+<body>
+    <h1>Presidential Candidate Polling Dashboard</h1>
+    <table>
+        <tr>
+            <th>Dates</th>
+            <th>Pollster</th>
+            <th>Sample Size</th>
+            <th>Result</th>
+            <th>Net</th>
+        </tr>
+        {% for row in pollster_data_array %}
+            <tr>
+                <td>{{ row.date }}</td>
+                <td>{{ row.pollster_name }}</td>
+                <td>{{ row.sample_size }}</td>
+                <td>Biden: {{ row.biden_fav }} Trump: {{ row.trump_fav }}</td>
+                {% if row.leader == 'Trump' %}
+                <td class="trumplead">{{ row.leader }} {{ row.net }} </td>
+                {% elif row.leader == "Biden" %}
+                <td class="bidenlead">{{ row.leader }} {{ row.net }} </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    <footer>
+        <p>Thanks to <a href="https://fivethirtyeight.com">fivethirtyeight.com</a> for collecting polling data.</p> 
+        <p>An <a href="https://andyeschultheiss.com">andyeschultheiss.com</a> creation</p>
+    </footer>
+</body>
+
+</html>
