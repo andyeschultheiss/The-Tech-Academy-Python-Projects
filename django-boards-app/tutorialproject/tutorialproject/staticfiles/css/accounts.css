@@ -1,0 +1,17 @@
+
+body {
+	background-color: #0c4b33;
+}
+
+.logo {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.logo a {
+  color: white;
+}
+
+.logo a:hover,
+.logo a:active {
+  text-decoration: none;
+}
